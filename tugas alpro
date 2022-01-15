@@ -1,0 +1,29 @@
+#1 judul program 
+
+def main():
+    # cetak judul program
+    print('program menentukan nilai maksimum tiga bilangan')
+    
+#2 input user
+
+    # input user
+    a = int(input('masukkan bilangan ke-1: '))
+    b = int(input('masukkan bilangan ke-2: '))
+    c = int(input('masukkan bilangan ke-3: '))
+    
+#3 menentukan nilai maks
+
+    # menentukan nilai terbesar
+    if a > b:
+        if a > c:
+            maks = a
+    else:
+        if b > c:
+            maks = b
+        else:
+            maks = c
+            
+    print('Nilai yang terbesar adalah: %d' % maks)
+    
+if __name__==' __main__':
+    main()
