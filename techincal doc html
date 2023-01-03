@@ -1,0 +1,173 @@
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<nav id="navbar">
+  <header>JS Methods Documentation</header>
+  <ul>
+    <a href="#Intro" class="nav-link"><li>Intro</li></a>
+    <a href="#Standard_JavaScript_Methods" class="nav-link"><li>Standard JavaScript Methods</li></a>
+    <a href="#1)_Get_an_element_by_its_id" class="nav-link"><li>1) Get an element by its id</li></a>
+    <a href="#Quick_JavaScript_Breakdown" class="nav-link"><li>Quick JavaScript Breakdown</li></a>
+    <a href="#2)_Get_an_HTML_element_by_its_class" class="nav-link"><li>2) Get an HTML element by its class</li></a>
+    <a href="#3)_Get_an_HTML_element_by_its_tag" class="nav-link"><li>3) Get an HTML element by its tag</li></a>
+    <a href="#ES6_JavaScript_Methods" class="nav-link"><li>ES6 JavaScript Methods</li></a>
+    <a href="#1)_Select_a_single_element" class="nav-link"><li>1) Select a single element</li></a>
+    <a href="#2)_Select_all_instances_of_an_element" class="nav-link"><li>2) Select all instances of an element</li></a>
+    <a href="#Coding_Challenge" class="nav-link"><li>Coding Challenge</li></a>
+  </ul>
+</nav>
+
+<main id="main-doc">
+  <section class="main-section" id="Intro">
+    <header>Intro</header>
+    <p>How can you access HTML elements with JavaScript? You use the DOM or <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction">Document Object Model</a> which gives you access to the HTML document by way of the <strong>document</strong> object.</p>
+
+    <p>Think of the document object as your HTML document. To get different HTML elements, you can call certain built-in methods of the document object whose purpose is to do the retrieval.</p>
+
+    <p>All HTML elements are stored in the <strong>document</strong>, so every time we grab an HTML element from the DOM we start with <code>document</code> followed by the method.</p>
+
+    <p>In this post, we’ll go over the different methods you can use to grab HTML elements from the DOM. First, we go over pre-ES6 JavaScript syntax before moving on to the newer ES6 methods. We end with a neat project that puts all we learn into practice.</p> 
+  </section>
+  
+    <section class="main-section" id="Standard_JavaScript_Methods">
+      <header>Standard JavaScript Methods</header>
+      <p>Standard JavaScript methods for fetching elements from the DOM include getElementById(), getElementsByTagName(), and getElementsByClassName().</p>
+    </section>
+
+    <section class="main-section" id="1)_Get_an_element_by_its_id">
+      <header>1) Get an element by its id</header>
+      <p><strong>getElementById(“…”)</strong></p>
+      <p>We use the HTML id attribute to refer to specific elements. Since an id is unique – <em>it shouldn’t appear for more than one element</em> – selecting an HTML element with a specific id guarantees pointing to that element.</p>
+      <p><strong>Example:</strong> Get the <code>&lt;p&gt;</code> tag by its id and change its content to something else with JavaScript.</p>
+      <pre>
+        <code>
+          &lt;p id="text"&gt;Hello World!&lt;/p&gt;
+
+          &lt;script type="text/javascript"&gt;
+          
+            document.getElementById("text").innerHTML = "Hello THT!";
+            
+          &lt;/script&gt;
+      </code>
+      </pre>
+    </section>
+
+
+    <section class="main-section" id="Quick_JavaScript_Breakdown">
+      <header>Quick JavaScript Breakdown</header>
+      <ul><li><strong>document</strong></li></ul>
+      <p>Points at the DOM, telling the browser to look within our HTML document.</p>
+      <ul><li><strong>.</strong> (dot/fullstop/period following <code>document</code>)</li></ul>
+      <p>Tells the browser to go <em>in</em> the document object.</p>
+      <ul><li><strong>getElementById(“text”)</strong></li></ul>
+      <p>Gets the element with an id of “text” from the document.</p>
+      <ul><li><strong>innerHTML = “Hello THT!”</strong></li></ul>
+      <p>Specifies <em>how</em> we want to change the selected element – in this case, changing its content.</p>
+      <p>In the above example, we told the browser to go within this document, get the element with the id of text and change the content of that element.</p>
+    </section>
+
+
+    <section class="main-section" id="2)_Get_an_HTML_element_by_its_class">
+      <header>2) Get an HTML element by its class</header>
+      <p><strong>document.getElementsByClassName(“…”)</strong></p>
+      <p>Getting elements by class name returns a <strong>list of all elements in the document with the specified class</strong>. Since class isn’t a unique identifier like id – <em>there can be more than one element with the same class</em> – the return response is a list.</p>
+      <p>It’s important to understand this because doing anything to the elements retrieved this way requires to <strong>loop through the list</strong> to either (1) pull the element we want to affect or (2) affect all elements.</p>
+      <p><strong>Challenge:</strong> Get the elements with a class of “demo” and turn the first element’s content to upper case so it reads “I’M THE FIRST ELEMENT WITH A CLASS OF DEMO”.</p>
+      <pre>
+        <code>
+          &lt;p class="demo"&gt;I'm the FIRST element with a class of demo.&lt;/p&gt;
+          &lt;p class="demo"&gt;I'm the SECOND element with a class of demo.&lt;/p&gt;
+          &lt;p class="demo"&gt;I'm the THIRD element with a class of demo.&lt;/p&gt;
+          &lt;p class="demo"&gt;I'm the FOURTH element with a class of demo.&lt;/p&gt;
+        </code>
+      </pre>
+      <p>Steps to follow:</p>
+      <ol>
+        <li>Store the list retrieved with <strong>getElementsByClassName()</strong> in a variable.</li>
+        <li>Get the first item in that list <em>(hint: it has an index of zero)</em>.</li>
+        <li>Take the first item’s content and turn it to upper case using the built-in JavaScript method <strong>toUpperCase()</strong>.</li>
+        </ol>
+      <pre>
+        <code>
+          &lt;script type="text/javascript"&gt;
+
+            const demoList = document.getElementsByClassName("demo");
+
+            demoList[0].innerHTML = demoList[0].innerHTML.toUpperCase();
+
+          &lt;/script&gt;
+      </code>
+    </pre>
+    </section>
+
+
+    <section class="main-section" id="3)_Get_an_HTML_element_by_its_tag">
+      <header>3) Get an HTML element by its tag</header>
+      <p><strong>getElementsByTagName(&#8220;&#8230;&#8221;)</strong></p>
+      <p>Like getElementsByClassName() returns a list of all elements of a particular class, getElementsByTagName() returns a <strong>list of all elements of a specific tag</strong>.</p>
+      <p>When we say &#8220;tags&#8221;, we&#8217;re talking about HTML tags like p, div, li, ul, and so forth.</p>
+      <p>In the previous example, we can easily get the p tags by their tag name instead of searching using class name.</p>
+      <pre>
+        <code>
+          &lt;script type="text/javascript"&gt;
+
+              const demoList = document.getElementsByTagName("p");
+
+              demoList[0].innerHTML = demoList[0].innerHTML.toUpperCase();
+
+          &lt;/script&gt;
+        </code>
+      </pre>
+      <h4>Summary</h4>
+      <ul>
+        <li>getElementById(&#8220;&#8230;&#8221;) returns a single item.</li>
+        <li>getElementsByClassName(&#8220;&#8230;&#8221;) and getElementsByTagName(&#8220;&#8230;&#8221;) each return a list.</li>
+        </ul>
+    </section>
+  
+    <section class="main-section" id="ES6_JavaScript_Methods">
+        <header>ES6 JavaScript Methods</header>
+        <p>The newer syntax allows us to grab either a single element or all instances of an element by way of two relatively flexible methods.</p>
+        <p>Both methods make use of <a href="https://thehelpfultipper.com/how-to-use-classes-ids-to-select-elements-in-css/">CSS selectors</a> to identify the element(s) to grab. This means when selecting an element by its id, you&#8217;ll search for &#8220;#myID&#8221; because that&#8217;s how you reference the element in CSS. Likewise, if searching by class, it would be &#8220;.myClass&#8221;, or by tag, &#8220;p&#8221;.</p>
+      </section>
+
+    <section class="main-section" id="1)_Select_a_single_element">
+        <header>1) Select a single element</header>
+        <p><strong>querySelector(&#8220;&#8230;&#8221;)</strong></p>
+        <p>This will return a single element &#8211; if more occur in the document, it will return the first instance <em>only</em>.</p>
+        <p>In the example above, we can get the first p element either by tag name or class name using a single method.</p>
+        <p><strong>Challenge:</strong> Turn the first paragraph to upper case and give it a background color by selecting the first <code>&lt;p&gt;</code> in two different ways.</p>
+        <ol>
+          <li>Get the content by <strong>tag name</strong> using querySelector() and turn them into upper case.</li>
+          <li>Get the content by <strong>class name</strong> using querySelector() and set a background color of yellow.</li>
+          </ol>
+      <pre>
+        <code>
+          &lt;script type="text/javascript"&gt;
+
+              const byTag = document.querySelector("p");
+              byTag.innerHTML = byTag.innerHTML.toUpperCase();
+
+              const byClass = document.querySelector(".demo");
+              byClass.style.backgroundColor = 'yellow';
+
+          &lt;/script&gt;
+        </code>
+      </pre>
+      <p>There&#8217;s redundancy in the example as we&#8217;re selecting the same element in different ways, but it drives home the point, no?</p>
+      </section>
+  
+      <section class="main-section" id="2)_Select_all_instances_of_an_element">
+        <header>2) Select all instances of an element</header>
+        <p><strong>querySelectorAll(&#8220;&#8230;&#8221;)</strong></p>
+        <p>Adding &#8220;All&#8221; to the previous method gives you access to a different method that returns a <strong>list of all element occurrences</strong>.</p>
+        <p>Similarly to querySelector(), querySelectorAll() looks for elements using CSS selectors. Again, this means to reference a class you&#8217;ll need the fullstop in front (.myClass); for an id, the hash (#myID) and for, let&#8217;s say an attribute selection, it&#8217;ll be something like a[href=&#8217;mylink&#8217;].</p>
+
+      </section>
+  
+  <section class="main-section" id="Coding_Challenge">
+        <header>Coding Challenge</header>
+        <p>Ready for a coding challenge to put all this new knowledge into use? Head over to <a href="https://thehelpfultipper.com/5-ways-to-access-html-elements-with-javascript/" target="_blank" rel="noopener">THT for the Click the Button</a> coding challenge!</p>
+      </section>
+  
+</main>
